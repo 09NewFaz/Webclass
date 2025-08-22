@@ -86,18 +86,25 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCalendar(); // Renderiza de nuevo para ocultar elementos de edición
     });
 
-    // Lógica del calendario y eventos (mismo código de antes)
+    // Lógica del calendario y eventos
     function renderCalendar() {
         const month = currentDate.getMonth();
         const year = currentDate.getFullYear();
     
-        if (year === 2025 && (month < 7 || month > 11)) {
-            currentDate = new Date(2025, 7, 1);
-        } else if (year !== 2025) {
-             currentDate = new Date(2025, 7, 1);
+        // Ocultar botones si el mes está en el rango límite
+        if (month === 7 && year === 2025) { // Agosto
+            prevBtn.style.visibility = 'hidden';
+        } else {
+            prevBtn.style.visibility = 'visible';
         }
 
-        monthYearEl.textContent = `${months[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+        if (month === 11 && year === 2025) { // Diciembre
+            nextBtn.style.visibility = 'hidden';
+        } else {
+            nextBtn.style.visibility = 'visible';
+        }
+    
+        monthYearEl.textContent = `${months[month]} ${year}`;
         datesGridEl.innerHTML = '';
 
         const firstDayOfMonth = new Date(year, month, 1).getDay();
