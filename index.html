@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendario Minimalista 2025</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="login-container" id="login-container">
@@ -19,9 +19,12 @@
         </div>
         <button id="login-btn">Iniciar Sesión</button>
         <p id="error-message" class="error-message"></p>
+        <button id="back-to-calendar" class="logout-btn">Volver al Calendario</button>
     </div>
 
     <div class="main-content" id="main-content">
+        <button id="show-login-btn" class="login-btn-top">Iniciar Sesión</button>
+        
         <div class="calendar-container">
             <div class="calendar-header">
                 <button id="prev-btn">&lt;</button>
@@ -39,7 +42,7 @@
             </div>
             <div class="dates-grid" id="dates-grid"></div>
         </div>
-        <button id="logout-btn" class="logout-btn">Cerrar Sesión</button>
+        <button id="logout-btn" class="logout-btn" style="display:none;">Cerrar Sesión</button>
     </div>
 
     <div class="event-modal" id="event-modal">
