@@ -1,5 +1,3 @@
-/* Este archivo debe estar en la carpeta 'css' */
-
 body {
     background-color: #121212;
     color: #e0e0e0;
@@ -84,7 +82,7 @@ body {
 /* Estilos del calendario */
 .calendar-container {
     width: 90%;
-    max-width: 700px;
+    max-width: 900px; /* Aumentado el ancho máximo para una mejor visualización en pantallas grandes */
     background-color: #1e1e1e;
     border-radius: 12px;
     padding: 24px;
@@ -147,7 +145,7 @@ body {
     font-size: 1.2rem;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-    height: 60px;
+    height: 80px; /* Aumentada la altura de las celdas para que se vean más grandes */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -196,6 +194,24 @@ body {
 
 .logout-btn:hover {
     background-color: #777;
+}
+
+/* Nuevo estilo para el botón de login en la parte superior */
+.login-btn-top {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.login-btn-top:hover {
+    background-color: #0056b3;
 }
 
 /* Estilos para el modal */
