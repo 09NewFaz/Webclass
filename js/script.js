@@ -1,3 +1,5 @@
+/* Este archivo debe estar en la carpeta 'js' */
+
 document.addEventListener('DOMContentLoaded', () => {
     const loginContainer = document.getElementById('login-container');
     const mainContent = document.getElementById('main-content');
@@ -24,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedDate = null;
     let isEditor = false;
 
-    // Usuarios y contraseñas autorizados (SOLO AQUÍ SE CAMBIA)
+    // Usuarios y contraseñas autorizados
     const authorizedUsers = {
         'amanda': '123456',
         'simon': 'hola123'
