@@ -24,10 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedDate = null;
     let isEditor = false;
 
-    // Usuarios y contraseñas autorizados
+    // Usuarios y contraseñas autorizados (SOLO AQUÍ SE CAMBIA)
     const authorizedUsers = {
-        'amanda': 'A#m@n_d4-2025!',
-        'simon': 'S1_m0n&2025_$'
+        'amanda': '123456',
+        'simon': 'hola123'
     };
 
     const months = [
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Funciones de control de la interfaz de usuario
     function showCalendar() {
         loginContainer.style.display = 'none';
-        mainContent.style.display = 'flex'; // Muestra el contenedor principal
+        mainContent.style.display = 'flex';
     }
 
     function hideCalendar() {
@@ -82,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const month = currentDate.getMonth();
         const year = currentDate.getFullYear();
     
-        // Limitar el calendario al rango de agosto a diciembre de 2025
         if (year === 2025 && (month < 7 || month > 11)) {
             currentDate = new Date(2025, 7, 1);
         } else if (year !== 2025) {
@@ -92,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         monthYearEl.textContent = `${months[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
         datesGridEl.innerHTML = '';
 
-        const firstDayOfMonth = new Date(year, month, 1).getDay(); // 0 = Domingo, 1 = Lunes
+        const firstDayOfMonth = new Date(year, month, 1).getDay();
         const daysInMonth = new Date(year, month + 1, 0).getDate();
 
         let firstDayAdjusted = firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1;
