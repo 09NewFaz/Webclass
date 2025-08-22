@@ -1,116 +1,203 @@
-:root {
-    --bg-color: #1a1a2e;
-    --card-bg: #22223b;
-    --text-color: #ffffff;
-    --accent-color: #e6a71e;
-    --border-color: #3d3d5f;
-    --hover-color: #35355a;
-}
-
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    margin: 0;
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    margin: 0;
+    flex-direction: column;
 }
 
+/* Contenedor principal del calendario, oculto por defecto */
+.main-content {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilos para el formulario de login */
+.login-container {
+    background-color: #1e1e1e;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    width: 300px;
+    text-align: center;
+    display: flex; /* Para centrar correctamente */
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    color: #e0e0e0;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+    width: 100%;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #999;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+}
+
+#login-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#login-btn:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: #ff6666;
+    margin-top: 10px;
+    display: none;
+}
+
+/* Estilos del calendario */
 .calendar-container {
     width: 90%;
-    max-width: 600px;
-    background-color: var(--card-bg);
-    border-radius: 10px;
-    padding: 2rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 700px;
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
 }
 
-.header-nav {
+.calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 20px;
 }
 
-#currentMonth {
+#month-year {
     font-size: 1.8rem;
     font-weight: 600;
-    text-transform: capitalize;
 }
 
-.header-nav button {
-    background-color: transparent;
-    border: 2px solid var(--border-color);
-    color: var(--text-color);
-    font-size: 1.5rem;
-    font-weight: 600;
-    padding: 0.25rem 0.75rem;
-    border-radius: 5px;
+.calendar-header button {
+    background-color: #333;
+    color: #e0e0e0;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 1.2rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
-.header-nav button:hover {
-    background-color: var(--hover-color);
+.calendar-header button:hover {
+    background-color: #555;
 }
 
-.weekdays {
+.calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
     text-align: center;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--accent-color);
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.days-grid {
+.day-of-week {
+    padding: 8px;
+    color: #999;
+}
+
+.dates-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 10px;
 }
 
-.day {
-    aspect-ratio: 1 / 1;
+.date-box {
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    padding: 20px 8px;
+    text-align: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    height: 60px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-start;
-    padding-top: 5px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-align: center;
     position: relative;
-    overflow: hidden;
+    padding-top: 25px;
 }
 
-.day:hover {
-    background-color: var(--hover-color);
+.date-box .date-number {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
 }
 
-.day-number {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 5px;
+.date-box .event-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #88ff88;
+    border-radius: 50%;
+    margin-top: 5px;
 }
 
-.event {
-    font-size: 0.7rem;
-    background-color: var(--accent-color);
-    color: var(--bg-color);
-    padding: 2px 5px;
-    border-radius: 3px;
-    width: 90%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-top: 2px;
+.date-box:hover {
+    background-color: #3a3a3a;
+    transform: translateY(-2px);
 }
 
-.modal {
+.date-box.inactive {
+    color: #666;
+    cursor: default;
+    background-color: #222;
+}
+
+.logout-btn {
+    margin-top: 20px;
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #777;
+}
+
+/* Estilos para el modal */
+.event-modal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -118,57 +205,84 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     justify-content: center;
     align-items: center;
 }
 
 .modal-content {
-    background-color: var(--card-bg);
-    padding: 2rem;
+    background-color: #1e1e1e;
+    padding: 30px;
     border-radius: 10px;
-    width: 90%;
-    max-width: 400px;
+    width: 80%;
+    max-width: 500px;
     text-align: center;
     position: relative;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #333;
 }
 
 .close-btn {
-    color: var(--text-color);
-    font-size: 1.5rem;
-    font-weight: bold;
+    color: #aaa;
     position: absolute;
     top: 10px;
     right: 15px;
+    font-size: 28px;
+    font-weight: bold;
     cursor: pointer;
 }
 
-#eventInput {
+.close-btn:hover,
+.close-btn:focus {
+    color: #fff;
+}
+
+#modal-date {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+#editable-area {
+    display: none;
+}
+
+#event-input {
     width: 100%;
     height: 100px;
-    margin-top: 1rem;
     padding: 10px;
     box-sizing: border-box;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
     border-radius: 5px;
-    resize: vertical;
+    border: 1px solid #444;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    resize: none;
+    margin-bottom: 15px;
 }
 
-#saveEventBtn {
-    background-color: var(--accent-color);
-    color: var(--bg-color);
+#save-event {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
     border: none;
-    padding: 0.75rem 1.5rem;
-    margin-top: 1rem;
     border-radius: 5px;
-    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
 
-#saveEventBtn:hover {
-    background-color: #f7b32c;
+#save-event:hover {
+    background-color: #0056b3;
+}
+
+.saved-events {
+    text-align: left;
+    margin-top: 20px;
+    border-top: 1px solid #444;
+    padding-top: 15px;
+}
+
+.event-item {
+    background-color: #2a2a2a;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
 }
