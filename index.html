@@ -3,40 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Calendario Minimalista</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Calendario Minimalista 2025</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="calendar-container">
-        <div class="header-nav">
-            <button id="prevBtn">&lt;</button>
-            <h2 id="currentMonth"></h2>
-            <button id="nextBtn">&gt;</button>
+    <div class="login-container" id="login-container">
+        <h2>Acceso al Calendario</h2>
+        <div class="input-group">
+            <label for="username">Usuario:</label>
+            <input type="text" id="username" name="username">
         </div>
-        <div class="weekdays">
-            <span>Dom</span>
-            <span>Lun</span>
-            <span>Mar</span>
-            <span>Mié</span>
-            <span>Jue</span>
-            <span>Vie</span>
-            <span>Sáb</span>
+        <div class="input-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password">
         </div>
-        <div class="days-grid" id="daysGrid"></div>
+        <button id="login-btn">Iniciar Sesión</button>
+        <p id="error-message" class="error-message"></p>
     </div>
 
-    <div id="eventModal" class="modal">
+    <div class="main-content" id="main-content">
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <button id="prev-btn">&lt;</button>
+                <h2 id="month-year"></h2>
+                <button id="next-btn">&gt;</button>
+            </div>
+            <div class="calendar-grid">
+                <div class="day-of-week">Lun</div>
+                <div class="day-of-week">Mar</div>
+                <div class="day-of-week">Mié</div>
+                <div class="day-of-week">Jue</div>
+                <div class="day-of-week">Vie</div>
+                <div class="day-of-week">Sáb</div>
+                <div class="day-of-week">Dom</div>
+            </div>
+            <div class="dates-grid" id="dates-grid"></div>
+        </div>
+        <button id="logout-btn" class="logout-btn">Cerrar Sesión</button>
+    </div>
+
+    <div class="event-modal" id="event-modal">
         <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h3 id="modalDate"></h3>
-            <textarea id="eventInput" placeholder="Añade una prueba o evento..."></textarea>
-            <button id="saveEventBtn">Guardar</button>
+            <span class="close-btn" id="close-modal">&times;</span>
+            <h3 id="modal-date"></h3>
+            <div id="editable-area">
+                <textarea id="event-input" placeholder="Añade una prueba, evento, etc."></textarea>
+                <button id="save-event">Guardar</button>
+            </div>
+            <div class="saved-events" id="saved-events"></div>
         </div>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
