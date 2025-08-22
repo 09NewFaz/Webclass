@@ -81,8 +81,8 @@ body {
 
 /* Estilos del calendario */
 .calendar-container {
-    width: 90%;
-    max-width: 900px; /* Aumentado el ancho máximo para una mejor visualización en pantallas grandes */
+    width: 100%;
+    max-width: 1000px; /* Aumentado el ancho máximo para una mejor visualización en pantallas grandes */
     background-color: #1e1e1e;
     border-radius: 12px;
     padding: 24px;
