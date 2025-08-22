@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Calendario Minimalista</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="calendar-container">
+        <div class="header-nav">
+            <button id="prevBtn">&lt;</button>
+            <h2 id="currentMonth"></h2>
+            <button id="nextBtn">&gt;</button>
+        </div>
+        <div class="weekdays">
+            <span>Dom</span>
+            <span>Lun</span>
+            <span>Mar</span>
+            <span>Mié</span>
+            <span>Jue</span>
+            <span>Vie</span>
+            <span>Sáb</span>
+        </div>
+        <div class="days-grid" id="daysGrid"></div>
+    </div>
+
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 id="modalDate"></h3>
+            <textarea id="eventInput" placeholder="Añade una prueba o evento..."></textarea>
+            <button id="saveEventBtn">Guardar</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
