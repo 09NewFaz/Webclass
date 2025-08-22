@@ -1,5 +1,3 @@
-/* Este archivo debe estar en la carpeta 'js' */
-
 document.addEventListener('DOMContentLoaded', () => {
     const loginContainer = document.getElementById('login-container');
     const mainContent = document.getElementById('main-content');
@@ -7,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const passwordInput = document.getElementById('password');
     const loginBtn = document.getElementById('login-btn');
     const logoutBtn = document.getElementById('logout-btn');
+    const showLoginBtn = document.getElementById('show-login-btn');
+    const backToCalendarBtn = document.getElementById('back-to-calendar');
     const errorMessage = document.getElementById('error-message');
 
     const monthYearEl = document.getElementById('month-year');
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveEventBtn = document.getElementById('save-event');
     const savedEventsContainer = document.getElementById('saved-events');
 
-    let currentDate = new Date(2025, 7, 1); // Agosto de 2025 es el mes 7 (índice 0)
+    let currentDate = new Date(2025, 7, 1);
     let selectedDate = null;
     let isEditor = false;
 
@@ -37,21 +37,29 @@ document.addEventListener('DOMContentLoaded', () => {
         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
     ];
 
-    // Funciones de control de la interfaz de usuario
+    // Lógica para alternar entre el calendario y el formulario de login
     function showCalendar() {
         loginContainer.style.display = 'none';
         mainContent.style.display = 'flex';
+        // Mostrar u ocultar botones según el tipo de usuario
+        if (isEditor) {
+            logoutBtn.style.display = 'block';
+            showLoginBtn.style.display = 'none';
+        } else {
+            logoutBtn.style.display = 'none';
+            showLoginBtn.style.display = 'block';
+        }
     }
 
-    function hideCalendar() {
+    function showLogin() {
         loginContainer.style.display = 'flex';
         mainContent.style.display = 'none';
-        usernameInput.value = '';
-        passwordInput.value = '';
-        errorMessage.style.display = 'none';
     }
 
-    // Lógica de autenticación
+    // Manejadores de eventos de los botones
+    showLoginBtn.addEventListener('click', showLogin);
+    backToCalendarBtn.addEventListener('click', showCalendar);
+
     loginBtn.addEventListener('click', () => {
         const username = usernameInput.value.toLowerCase().trim();
         const password = passwordInput.value.trim();
@@ -66,20 +74,19 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('currentUser', 'visitor');
             showCalendar();
             renderCalendar();
-            if (username && password) {
-                errorMessage.textContent = 'Usuario o contraseña incorrectos.';
-                errorMessage.style.display = 'block';
-            }
+            errorMessage.textContent = 'Usuario o contraseña incorrectos.';
+            errorMessage.style.display = 'block';
         }
     });
 
     logoutBtn.addEventListener('click', () => {
         isEditor = false;
         localStorage.removeItem('currentUser');
-        hideCalendar();
+        showCalendar();
+        renderCalendar(); // Renderiza de nuevo para ocultar elementos de edición
     });
 
-    // Lógica del calendario y eventos
+    // Lógica del calendario y eventos (mismo código de antes)
     function renderCalendar() {
         const month = currentDate.getMonth();
         const year = currentDate.getFullYear();
@@ -189,17 +196,14 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCalendar();
     });
 
-    // Cargar estado al inicio
+    // Lógica para la carga inicial
     const userStatus = localStorage.getItem('currentUser');
     if (userStatus && (userStatus === 'amanda' || userStatus === 'simon')) {
         isEditor = true;
         showCalendar();
-        renderCalendar();
-    } else if (userStatus === 'visitor') {
+    } else {
         isEditor = false;
         showCalendar();
-        renderCalendar();
-    } else {
-        hideCalendar();
     }
+    renderCalendar(); // Renderiza el calendario al cargar la página
 });
