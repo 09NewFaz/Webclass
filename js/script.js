@@ -84,10 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
         // Limitar el calendario al rango de agosto a diciembre de 2025
         if (year === 2025 && (month < 7 || month > 11)) {
-            // Si el mes está fuera de rango, regresa al inicio (agosto)
             currentDate = new Date(2025, 7, 1);
         } else if (year !== 2025) {
-             // Si el año no es 2025, también regresa al inicio
              currentDate = new Date(2025, 7, 1);
         }
 
