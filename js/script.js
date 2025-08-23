@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const months = [
-        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 
+        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
     ];
 
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderCalendar() {
         const month = currentDate.getMonth();
         const year = currentDate.getFullYear();
-    
+
         if (month === 7 && year === 2025) {
             prevBtn.style.visibility = 'hidden';
         } else {
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             nextBtn.style.visibility = 'visible';
         }
-    
+
         monthYearEl.textContent = `${months[month]} ${year}`;
         datesGridEl.innerHTML = '';
 
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (isEditor) {
             editableArea.style.display = 'block';
-            eventInput.value = ''; // Limpiar el input para un nuevo evento
+            eventInput.value = '';
         } else {
             editableArea.style.display = 'none';
         }
@@ -171,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
             savedEventsContainer.appendChild(noEventItem);
         }
         
-        // Agregar manejador de eventos a los botones de borrar
         document.querySelectorAll('.delete-btn').forEach(button => {
             button.addEventListener('click', (event) => {
                 const index = event.target.dataset.index;
@@ -190,9 +189,8 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.removeItem(selectedDate);
         }
         
-        // Vuelve a mostrar la modal con la lista actualizada
         showModal();
-        renderCalendar(); // Renderizar el calendario de nuevo para actualizar el indicador
+        renderCalendar();
     }
 
     closeModalBtn.addEventListener('click', () => {
@@ -212,8 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
             events.push(newEventText);
             localStorage.setItem(selectedDate, JSON.stringify(events));
             
-            eventInput.value = ''; // Limpiar el input después de añadir
-            showModal(); // Volver a mostrar la modal para ver el nuevo evento
+            eventInput.value = '';
+            showModal();
             renderCalendar();
         }
     });
