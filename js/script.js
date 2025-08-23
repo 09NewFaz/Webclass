@@ -122,8 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
             dateBox.appendChild(dateNumber);
             
             const fullDate = `${year}-${month + 1}-${i}`;
-            const savedEvent = localStorage.getItem(fullDate);
-            if (savedEvent) {
+            const savedEvents = JSON.parse(localStorage.getItem(fullDate)) || [];
+            if (savedEvents.length > 0) {
                 const eventIndicator = document.createElement('div');
                 eventIndicator.classList.add('event-indicator');
                 dateBox.appendChild(eventIndicator);
@@ -142,29 +142,57 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.display = 'flex';
         modalDateEl.textContent = selectedDate;
 
-        const savedEvent = localStorage.getItem(selectedDate);
-        displaySavedEvents(savedEvent);
+        const savedEvents = JSON.parse(localStorage.getItem(selectedDate)) || [];
+        displaySavedEvents(savedEvents);
 
         if (isEditor) {
             editableArea.style.display = 'block';
-            eventInput.value = savedEvent || '';
+            eventInput.value = ''; // Limpiar el input para un nuevo evento
         } else {
             editableArea.style.display = 'none';
         }
     }
 
-    function displaySavedEvents(eventText) {
+    function displaySavedEvents(eventList) {
         savedEventsContainer.innerHTML = '';
-        if (eventText) {
-            const eventItem = document.createElement('div');
-            eventItem.classList.add('event-item');
-            eventItem.textContent = eventText;
-            savedEventsContainer.appendChild(eventItem);
+        if (eventList.length > 0) {
+            eventList.forEach((event, index) => {
+                const eventItem = document.createElement('div');
+                eventItem.classList.add('event-item');
+                eventItem.innerHTML = `
+                    <span>${event}</span>
+                    <button class="delete-btn" data-index="${index}">Borrar</button>
+                `;
+                savedEventsContainer.appendChild(eventItem);
+            });
         } else {
             const noEventItem = document.createElement('div');
             noEventItem.textContent = "No hay eventos en esta fecha.";
             savedEventsContainer.appendChild(noEventItem);
         }
+        
+        // Agregar manejador de eventos a los botones de borrar
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const index = event.target.dataset.index;
+                deleteEvent(index);
+            });
+        });
+    }
+
+    function deleteEvent(indexToDelete) {
+        const events = JSON.parse(localStorage.getItem(selectedDate)) || [];
+        events.splice(indexToDelete, 1);
+        
+        if (events.length > 0) {
+            localStorage.setItem(selectedDate, JSON.stringify(events));
+        } else {
+            localStorage.removeItem(selectedDate);
+        }
+        
+        // Vuelve a mostrar la modal con la lista actualizada
+        showModal();
+        renderCalendar(); // Renderizar el calendario de nuevo para actualizar el indicador
     }
 
     closeModalBtn.addEventListener('click', () => {
@@ -178,13 +206,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     saveEventBtn.addEventListener('click', () => {
-        if (selectedDate && eventInput.value.trim() !== '') {
-            localStorage.setItem(selectedDate, eventInput.value.trim());
-        } else if (selectedDate) {
-            localStorage.removeItem(selectedDate);
+        const newEventText = eventInput.value.trim();
+        if (selectedDate && newEventText !== '') {
+            const events = JSON.parse(localStorage.getItem(selectedDate)) || [];
+            events.push(newEventText);
+            localStorage.setItem(selectedDate, JSON.stringify(events));
+            
+            eventInput.value = ''; // Limpiar el input después de añadir
+            showModal(); // Volver a mostrar la modal para ver el nuevo evento
+            renderCalendar();
         }
-        modal.style.display = 'none';
-        renderCalendar();
     });
 
     prevBtn.addEventListener('click', () => {
