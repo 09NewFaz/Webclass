@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function showLogin() {
         loginContainer.style.display = 'flex';
         mainContent.style.display = 'none';
-        // Agregamos esta línea para cerrar el modal
         modal.style.display = 'none';
     }
 
@@ -168,8 +167,22 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span class="event-subject">Asignatura: ${event.subject}</span>
                         <span class="event-content">Contenido: ${event.content}</span>
                     </div>
-                    <button class="delete-btn" data-index="${index}">Borrar</button>
                 `;
+
+                // Solo agrega el botón de borrar si el usuario es un editor
+                if (isEditor) {
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.classList.add('delete-btn');
+                    deleteBtn.dataset.index = index;
+                    deleteBtn.textContent = 'Borrar';
+                    eventItem.appendChild(deleteBtn);
+
+                    deleteBtn.addEventListener('click', (e) => {
+                        const index = e.target.dataset.index;
+                        deleteEvent(index);
+                    });
+                }
+                
                 savedEventsContainer.appendChild(eventItem);
             });
         } else {
@@ -177,13 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
             noEventItem.textContent = "No hay eventos en esta fecha.";
             savedEventsContainer.appendChild(noEventItem);
         }
-        
-        document.querySelectorAll('.delete-btn').forEach(button => {
-            button.addEventListener('click', (event) => {
-                const index = event.target.dataset.index;
-                deleteEvent(index);
-            });
-        });
     }
 
     function deleteEvent(indexToDelete) {
