@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModalBtn = document.getElementById('close-modal');
     const modalDateEl = document.getElementById('modal-date');
     const editableArea = document.getElementById('editable-area');
-    const eventInput = document.getElementById('event-input');
+    const subjectInput = document.getElementById('subject-input');
+    const contentInput = document.getElementById('content-input');
     const saveEventBtn = document.getElementById('save-event');
     const savedEventsContainer = document.getElementById('saved-events');
 
@@ -147,7 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (isEditor) {
             editableArea.style.display = 'block';
-            eventInput.value = '';
+            subjectInput.value = '';
+            contentInput.value = '';
         } else {
             editableArea.style.display = 'none';
         }
@@ -160,7 +162,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const eventItem = document.createElement('div');
                 eventItem.classList.add('event-item');
                 eventItem.innerHTML = `
-                    <span>${event}</span>
+                    <div class="event-details">
+                        <span class="event-subject">Asignatura: ${event.subject}</span>
+                        <span class="event-content">Contenido: ${event.content}</span>
+                    </div>
                     <button class="delete-btn" data-index="${index}">Borrar</button>
                 `;
                 savedEventsContainer.appendChild(eventItem);
@@ -204,13 +209,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     saveEventBtn.addEventListener('click', () => {
-        const newEventText = eventInput.value.trim();
-        if (selectedDate && newEventText !== '') {
+        const newSubjectText = subjectInput.value.trim();
+        const newContentText = contentInput.value.trim();
+        
+        if (selectedDate && (newSubjectText !== '' || newContentText !== '')) {
+            const newEvent = {
+                subject: newSubjectText,
+                content: newContentText
+            };
+
             const events = JSON.parse(localStorage.getItem(selectedDate)) || [];
-            events.push(newEventText);
+            events.push(newEvent);
             localStorage.setItem(selectedDate, JSON.stringify(events));
             
-            eventInput.value = '';
+            subjectInput.value = '';
+            contentInput.value = '';
             showModal();
             renderCalendar();
         }
