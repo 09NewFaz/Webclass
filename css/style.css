@@ -78,85 +78,44 @@ body {
 }
 
 .calendar-container {
-    width: 90%;
-    max-width: 900px;
+    width: 90%;               /* ocupa casi todo el ancho */
+    max-width: 1200px;        /* límite para que no se vuelva gigante */
+    min-width: 700px;         /* para que no se achique demasiado */
     background-color: #1e1e1e;
     border-radius: 12px;
-    padding: 24px;
+    padding: 30px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     border: 1px solid #333;
-}
-
-.calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-#month-year {
-    font-size: 1.8rem;
-    font-weight: 600;
-}
-
-.calendar-header button {
-    background-color: #333;
-    color: #e0e0e0;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.calendar-header button:hover {
-    background-color: #555;
-}
-
-.calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.day-of-week {
-    padding: 8px;
-    color: #999;
 }
 
 .dates-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
+    gap: 12px; /* un poco más de aire */
 }
 
 .date-box {
     background-color: #2a2a2a;
     border-radius: 8px;
-    padding: 20px 8px;
+    aspect-ratio: 1 / 1;   /* cuadrado automático */
     text-align: center;
-    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 1.2vw, 1.3rem); /* escala con pantalla */
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-    height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
-    padding-top: 25px;
 }
 
 .date-box .date-number {
     position: absolute;
-    top: 5px;
-    left: 5px;
-    font-size: 0.9rem;
+    top: 6px;
+    left: 6px;
+    font-size: 0.85rem;
     font-weight: bold;
+}
 }
 
 .date-box .event-indicator {
