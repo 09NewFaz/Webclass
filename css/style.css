@@ -336,6 +336,17 @@ body {
     align-items: center;
     z-index: 1000; /* Asegura que esté por encima de todo */
 }
+
+/* Estilos del contenedor de la animación */
+.loading-animation {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
 /* Estilos para la rueda de carga */
 .loading-spinner {
     border: 4px solid #f3f3f3;
@@ -344,9 +355,18 @@ body {
     width: 40px;
     height: 40px;
     animation: spin 1s linear infinite;
+    position: absolute;
 }
 
+/* Animación de giro */
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* Estilos para el GIF de éxito */
+.success-gif {
+    width: 60px; /* Asegura que el tamaño sea el mismo que el del contenedor */
+    height: 60px;
+    display: none; /* Oculto por defecto */
 }
