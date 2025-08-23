@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalDateEl = document.getElementById('modal-date');
     const editableArea = document.getElementById('editable-area');
     const eventInput = document.getElementById('event-input');
-    const saveEventBtn = document.getElementById('save-event'); // Re-declarado para evitar errores
+    const saveEventBtn = document.getElementById('save-event');
     const savedEventsContainer = document.getElementById('saved-events');
 
     let currentDate = new Date(2025, 7, 1);
