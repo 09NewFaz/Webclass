@@ -12,8 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const monthYearEl = document.getElementById('month-year');
     const datesGridEl = document.getElementById('dates-grid');
     const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-
     const modal = document.getElementById('event-modal');
     const closeModalBtn = document.getElementById('close-modal');
     const modalDateEl = document.getElementById('modal-date');
