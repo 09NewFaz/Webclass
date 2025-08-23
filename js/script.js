@@ -80,6 +80,9 @@ document.addEventListener('DOMContentLoaded', () => {
     logoutBtn.addEventListener('click', () => {
         isEditor = false;
         localStorage.removeItem('currentUser');
+        // Agregamos estas dos líneas
+        usernameInput.value = '';
+        passwordInput.value = '';
         showCalendar();
         renderCalendar();
     });
