@@ -45,7 +45,7 @@ body {
     color: #999;
 }
 
-.input-group input {
+.input-group input, .input-group textarea {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
@@ -77,10 +77,11 @@ body {
     display: none;
 }
 
+/* ===== CALENDARIO ===== */
 .calendar-container {
-    width: 90%;               /* ocupa casi todo el ancho */
-    max-width: 1200px;        /* límite para que no se vuelva gigante */
-    min-width: 700px;         /* para que no se achique demasiado */
+    width: 90%;
+    max-width: 1200px;
+    min-width: 700px;
     background-color: #1e1e1e;
     border-radius: 12px;
     padding: 30px;
@@ -88,18 +89,60 @@ body {
     border: 1px solid #333;
 }
 
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#month-year {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.calendar-header button {
+    background-color: #333;
+    color: #e0e0e0;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.calendar-header button:hover {
+    background-color: #555;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.day-of-week {
+    padding: 8px;
+    color: #999;
+    font-size: 1rem;
+}
+
 .dates-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 12px; /* un poco más de aire */
+    gap: 12px;
 }
 
 .date-box {
     background-color: #2a2a2a;
     border-radius: 8px;
-    aspect-ratio: 1 / 1;   /* cuadrado automático */
+    aspect-ratio: 1 / 1;
     text-align: center;
-    font-size: clamp(0.9rem, 1.2vw, 1.3rem); /* escala con pantalla */
+    font-size: clamp(0.9rem, 1.2vw, 1.3rem);
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
     display: flex;
@@ -115,7 +158,6 @@ body {
     left: 6px;
     font-size: 0.85rem;
     font-weight: bold;
-}
 }
 
 .date-box .event-indicator {
@@ -169,6 +211,7 @@ body {
     background-color: #0056b3;
 }
 
+/* ===== MODAL ===== */
 .event-modal {
     display: none;
     position: fixed;
@@ -217,19 +260,6 @@ body {
     display: none;
 }
 
-#event-input {
-    width: 100%;
-    height: 100px;
-    padding: 10px;
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 1px solid #444;
-    background-color: #2a2a2a;
-    color: #e0e0e0;
-    resize: none;
-    margin-bottom: 15px;
-}
-
 #save-event {
     background-color: #007bff;
     color: white;
@@ -257,4 +287,37 @@ body {
     border-radius: 5px;
     margin-bottom: 10px;
     white-space: pre-wrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-details {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.event-subject {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.event-content {
+    font-size: 0.9em;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
 }
