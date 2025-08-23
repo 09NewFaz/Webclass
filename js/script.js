@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedDate = null;
     let isEditor = false;
 
-    // Usuarios y contraseñas autorizados
     const authorizedUsers = {
         'amanda': '123456',
         'simon': 'hola123'
@@ -37,11 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
     ];
 
-    // Lógica para alternar entre el calendario y el formulario de login
     function showCalendar() {
         loginContainer.style.display = 'none';
         mainContent.style.display = 'flex';
-        // Mostrar u ocultar botones según el tipo de usuario
         if (isEditor) {
             logoutBtn.style.display = 'block';
             showLoginBtn.style.display = 'none';
@@ -56,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
         mainContent.style.display = 'none';
     }
 
-    // Manejadores de eventos de los botones
     showLoginBtn.addEventListener('click', showLogin);
     backToCalendarBtn.addEventListener('click', showCalendar);
 
@@ -83,22 +79,20 @@ document.addEventListener('DOMContentLoaded', () => {
         isEditor = false;
         localStorage.removeItem('currentUser');
         showCalendar();
-        renderCalendar(); // Renderiza de nuevo para ocultar elementos de edición
+        renderCalendar();
     });
 
-    // Lógica del calendario y eventos
     function renderCalendar() {
         const month = currentDate.getMonth();
         const year = currentDate.getFullYear();
     
-        // Ocultar botones si el mes está en el rango límite
-        if (month === 7 && year === 2025) { // Agosto
+        if (month === 7 && year === 2025) {
             prevBtn.style.visibility = 'hidden';
         } else {
             prevBtn.style.visibility = 'visible';
         }
 
-        if (month === 11 && year === 2025) { // Diciembre
+        if (month === 11 && year === 2025) {
             nextBtn.style.visibility = 'hidden';
         } else {
             nextBtn.style.visibility = 'visible';
@@ -203,7 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCalendar();
     });
 
-    // Lógica para la carga inicial
     const userStatus = localStorage.getItem('currentUser');
     if (userStatus && (userStatus === 'amanda' || userStatus === 'simon')) {
         isEditor = true;
@@ -212,5 +205,5 @@ document.addEventListener('DOMContentLoaded', () => {
         isEditor = false;
         showCalendar();
     }
-    renderCalendar(); // Renderiza el calendario al cargar la página
+    renderCalendar();
 });
