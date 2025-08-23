@@ -23,7 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveEventBtn = document.getElementById('save-event');
     const savedEventsContainer = document.getElementById('saved-events');
 
-    const loadingOverlay = document.getElementById('loading-overlay'); // Nueva línea
+    const loadingOverlay = document.getElementById('loading-overlay');
+    const loadingSpinner = document.querySelector('.loading-spinner');
+    const successGif = document.querySelector('.success-gif'); // Referencia al GIF
 
     let currentDate = new Date(2025, 7, 1);
     let selectedDate = null;
@@ -64,26 +66,35 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = usernameInput.value.toLowerCase().trim();
         const password = passwordInput.value.trim();
         
-        // Muestra la animación de carga
         loadingOverlay.style.display = 'flex';
+        loadingSpinner.style.display = 'block';
+        successGif.style.display = 'none';
+        errorMessage.style.display = 'none';
 
-        setTimeout(() => { // Simula un retraso de carga de 1 segundo
+        setTimeout(() => {
             if (authorizedUsers[username] && authorizedUsers[username] === password) {
                 isEditor = true;
                 localStorage.setItem('currentUser', username);
-                showCalendar();
-                renderCalendar();
+                
+                // Oculta la rueda y muestra el GIF
+                loadingSpinner.style.display = 'none';
+                successGif.style.display = 'block';
+                
+                // Espera a que el GIF se reproduzca (ajusta el tiempo si es necesario)
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none';
+                    showCalendar();
+                    renderCalendar();
+                }, 1500); // 1.5 segundos para la animación del GIF
+
             } else {
                 isEditor = false;
                 localStorage.setItem('currentUser', 'visitor');
-                showCalendar();
-                renderCalendar();
+                loadingOverlay.style.display = 'none';
                 errorMessage.textContent = 'Usuario o contraseña incorrectos.';
                 errorMessage.style.display = 'block';
             }
-            // Oculta la animación de carga después de la validación
-            loadingOverlay.style.display = 'none';
-        }, 1000); // Retraso de 1000ms (1 segundo)
+        }, 1000); // Retraso de 1 segundo para la validación
     });
 
     logoutBtn.addEventListener('click', () => {
