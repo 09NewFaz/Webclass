@@ -52,6 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function showLogin() {
         loginContainer.style.display = 'flex';
         mainContent.style.display = 'none';
+        // Agregamos esta línea para cerrar el modal
+        modal.style.display = 'none';
     }
 
     showLoginBtn.addEventListener('click', showLogin);
