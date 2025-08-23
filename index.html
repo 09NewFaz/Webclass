@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendario 2025</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Calendario Minimalista 2025</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="login-container" id="login-container">
-        <h2>¡Accede al calendario!</h2>
+        <h2>Acceso al Calendario</h2>
         <div class="input-group">
             <label for="username">Usuario:</label>
             <input type="text" id="username" name="username">
@@ -19,7 +19,7 @@
         </div>
         <button id="login-btn">Iniciar Sesión</button>
         <p id="error-message" class="error-message"></p>
-        <button id="back-to-calendar" class="logout-btn">⭐ Entrar como invitado ⭐</button>
+        <button id="back-to-calendar" class="logout-btn">Volver al Calendario</button>
     </div>
 
     <div class="main-content" id="main-content">
@@ -49,7 +49,14 @@
             <span class="close-btn" id="close-modal">&times;</span>
             <h3 id="modal-date"></h3>
             <div id="editable-area">
-                <textarea id="event-input" placeholder="Añade una prueba, evento, etc."></textarea>
+                <div class="input-group">
+                    <label for="subject-input">Asignatura:</label>
+                    <input type="text" id="subject-input" placeholder="Ej: Matemáticas">
+                </div>
+                <div class="input-group">
+                    <label for="content-input">Contenido:</label>
+                    <textarea id="content-input" placeholder="Ej: Teorema de Tales"></textarea>
+                </div>
                 <button id="save-event">Añadir</button>
             </div>
             <div class="saved-events" id="saved-events"></div>
