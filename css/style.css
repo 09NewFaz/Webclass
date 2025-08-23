@@ -77,14 +77,12 @@ body {
     display: none;
 }
 
-/* ===== CALENDARIO ===== */
 .calendar-container {
-    width: 90%;               /* ocupa casi todo el ancho */
-    max-width: 1200px;        /* límite para que no sea titánico */
-    min-width: 700px;         /* que no se achique demasiado */
+    width: 90%;
+    max-width: 900px;
     background-color: #1e1e1e;
     border-radius: 12px;
-    padding: 30px;
+    padding: 24px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     border: 1px solid #333;
 }
@@ -119,7 +117,7 @@ body {
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 12px;
+    gap: 10px;
     text-align: center;
     font-weight: bold;
     margin-bottom: 10px;
@@ -128,35 +126,36 @@ body {
 .day-of-week {
     padding: 8px;
     color: #999;
-    font-size: 1rem;
 }
 
 .dates-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 12px;
+    gap: 10px;
 }
 
 .date-box {
     background-color: #2a2a2a;
     border-radius: 8px;
-    aspect-ratio: 1 / 1;   /* cuadrado automático */
+    padding: 20px 8px;
     text-align: center;
-    font-size: clamp(0.9rem, 1.2vw, 1.3rem); /* escala con pantalla */
+    font-size: 1.2rem;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
+    height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
+    padding-top: 25px;
 }
 
 .date-box .date-number {
     position: absolute;
-    top: 6px;
-    left: 6px;
-    font-size: 0.85rem;
+    top: 5px;
+    left: 5px;
+    font-size: 0.9rem;
     font-weight: bold;
 }
 
@@ -211,7 +210,6 @@ body {
     background-color: #0056b3;
 }
 
-/* ===== MODAL ===== */
 .event-modal {
     display: none;
     position: fixed;
@@ -300,4 +298,22 @@ body {
     border-radius: 5px;
     margin-bottom: 10px;
     white-space: pre-wrap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
 }
