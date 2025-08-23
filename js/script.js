@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const loadingOverlay = document.getElementById('loading-overlay');
     const loadingSpinner = document.querySelector('.loading-spinner');
-    const successGif = document.querySelector('.success-gif'); // Referencia al GIF
+    const checkmark = document.querySelector('.checkmark');
 
     let currentDate = new Date(2025, 7, 1);
     let selectedDate = null;
@@ -66,26 +66,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = usernameInput.value.toLowerCase().trim();
         const password = passwordInput.value.trim();
         
+        // Muestra la animación de carga y la rueda
         loadingOverlay.style.display = 'flex';
         loadingSpinner.style.display = 'block';
-        successGif.style.display = 'none';
+        checkmark.style.display = 'none';
         errorMessage.style.display = 'none';
 
-        setTimeout(() => {
+        setTimeout(() => { // Simula un retraso de carga
             if (authorizedUsers[username] && authorizedUsers[username] === password) {
                 isEditor = true;
                 localStorage.setItem('currentUser', username);
                 
-                // Oculta la rueda y muestra el GIF
+                // Muestra el checkmark y oculta la rueda
                 loadingSpinner.style.display = 'none';
-                successGif.style.display = 'block';
+                checkmark.style.display = 'block';
                 
-                // Espera a que el GIF se reproduzca (ajusta el tiempo si es necesario)
+                // Espera a que la animación del check termine
                 setTimeout(() => {
                     loadingOverlay.style.display = 'none';
                     showCalendar();
                     renderCalendar();
-                }, 1500); // 1.5 segundos para la animación del GIF
+                }, 1500); // Duración de la animación del check
 
             } else {
                 isEditor = false;
@@ -94,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 errorMessage.textContent = 'Usuario o contraseña incorrectos.';
                 errorMessage.style.display = 'block';
             }
-        }, 1000); // Retraso de 1 segundo para la validación
+        }, 1000); // Retraso de 1000ms (1 segundo)
     });
 
     logoutBtn.addEventListener('click', () => {
