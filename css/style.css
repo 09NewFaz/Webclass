@@ -10,14 +10,12 @@ body {
     flex-direction: column;
 }
 
-/* Contenedor principal del calendario, oculto por defecto */
 .main-content {
     display: none;
     flex-direction: column;
     align-items: center;
 }
 
-/* Estilos para el formulario de login */
 .login-container {
     background-color: #1e1e1e;
     padding: 40px;
@@ -79,10 +77,9 @@ body {
     display: none;
 }
 
-/* Estilos del calendario */
 .calendar-container {
-    width: 100%;
-    max-width: 1000px; /* Aumentado el ancho máximo para una mejor visualización en pantallas grandes */
+    width: 90%;
+    max-width: 900px;
     background-color: #1e1e1e;
     border-radius: 12px;
     padding: 24px;
@@ -145,7 +142,7 @@ body {
     font-size: 1.2rem;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-    height: 80px; /* Aumentada la altura de las celdas para que se vean más grandes */
+    height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -196,7 +193,6 @@ body {
     background-color: #777;
 }
 
-/* Estilos para el botón de login en la parte superior */
 .login-btn-top {
     position: absolute;
     top: 20px;
@@ -214,7 +210,6 @@ body {
     background-color: #0056b3;
 }
 
-/* Estilos para el modal */
 .event-modal {
     display: none;
     position: fixed;
