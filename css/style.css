@@ -364,9 +364,37 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Estilos para el GIF de éxito */
-.success-gif {
-    width: 60px; /* Asegura que el tamaño sea el mismo que el del contenedor */
+/* Estilos para el checkmark */
+.checkmark {
+    width: 60px;
     height: 60px;
+    border-radius: 50%;
     display: none; /* Oculto por defecto */
+}
+
+.checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 4;
+    stroke-miterlimit: 10;
+    stroke: #88ff88;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-path {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    stroke-width: 4;
+    stroke: #88ff88;
+    fill: none;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+/* Animación de la línea del checkmark */
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
 }
